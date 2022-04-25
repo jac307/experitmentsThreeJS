@@ -1,0 +1,20 @@
+body{
+  background: black;
+}
+
+.menuTitles{
+  color: white;
+  font-family: Helvetica;
+  font-size: 0.9em;
+}
+
+.dropdownMenus{
+  background-color: transparent;
+  color: white;
+  border: solid transparent;
+  font-size: 1em;
+}
+
+.dropdownMenus:focus{
+  background-color: transparent;
+}
