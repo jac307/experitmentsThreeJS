@@ -25,7 +25,6 @@ videoTexture.minFilter = THREE.LinearFilter;
 videoTexture.magFilter = THREE.LinearFilter;
 videoTexture.wrapS = THREE.RepeatWrapping;
 videoTexture.wrapT = THREE.RepeatWrapping;
-console.log(videoTexture);
 
 const texture = new THREE.TextureLoader().load( "textures/cellos.jpg" );
 texture.wrapS = THREE.RepeatWrapping;
@@ -38,36 +37,37 @@ texture.repeat.set( 4, 4 );
 
 
 // creating geometry, mapping texture and adding to the scene
-var mtlLoader = new MTLLoader();
-mtlLoader.load("obj/exp.mtl", function (materials) {
-    materials.preload();
+// var mtlLoader = new MTLLoader();
+// mtlLoader.load("obj/exp.mtl", function (materials) {
+//     materials.preload();
+//
+//     var objLoader = new OBJLoader();
+//     objLoader.load("obj/exp.obj", function (object) {
+//         object.position.y = 0;
+//         object.rotation.x = 1;
+//         object.rotation.y = 1;
+//         object.rotation.z = 0.5;
+//
+//         // add video material for ico - [0], ico2 needs element [1], globe nees the element [0]
+//         materials.materials.None.map = videoTexture;
+//         object.children[1].material = materials.materials.None;
+//         console.log(materials);
+//         // add video material for cube
+//         // materials.materials.Material.map = videoTexture;
+//         // object.children[0].material = materials.materials.Material;
+//
+//         objLoader.setMaterials(materials);
+//         scene.add(object);
+//         console.log(object);
+//     });
+// });
 
-    var objLoader = new OBJLoader();
-    objLoader.load("obj/exp.obj", function (object) {
-        object.position.y = 0;
-        object.rotation.x = 1;
-        object.rotation.y = 1;
-        object.rotation.z = 0.5;
 
-        // add video material for ico - [0], ico2 needs element [1], globe nees the element [0]
-        materials.materials.None.map = videoTexture;
-        object.children[1].material = materials.materials.None;
-        console.log(materials);
-        // add video material for cube
-        // materials.materials.Material.map = videoTexture;
-        // object.children[0].material = materials.materials.Material;
-
-        objLoader.setMaterials(materials);
-        scene.add(object);
-        console.log(object);
-    });
-});
-
-
-// const geometry = new THREE.BoxGeometry();
-// const material = new THREE.MeshBasicMaterial( { map: videoTexture } );
-// const cube = new THREE.Mesh( geometry, material );
-// scene.add( cube );
+const geometry = new THREE.BoxGeometry();
+const material = new THREE.MeshBasicMaterial( { map: texture } );
+const cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+console.log(cube);
 
 
 var light = new THREE.HemisphereLight(0xffff)

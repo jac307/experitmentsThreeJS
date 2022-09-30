@@ -13,7 +13,7 @@ document.body.appendChild( renderer.domElement );
 
 //creating video texture
 const video = document.createElement('video');
-video.src = "textures/01.mov";
+video.src = "t/static.mov";
 video.loop = true;
 video.muted = true;
 video.autoplay = true;
@@ -27,11 +27,14 @@ videoTexture.wrapT = THREE.RepeatWrapping;
 
 //creating geometry
 var mtlLoader = new MTLLoader();
-mtlLoader.load("obj/cubo.mtl", function (materials) {
+mtlLoader.load("t/cubo.mtl", function (materials) {
+    console.log(JSON.stringify(materials))
     materials.preload();
 
+    console.log(JSON.stringify(materials))
+
     var objLoader = new OBJLoader();
-    objLoader.load("obj/cubo.obj", function (object) {
+    objLoader.load("t/cubo.obj", function (object) {
         object.position.y = 1;
         object.rotation.x = 1;
         object.rotation.y = 1;
@@ -40,7 +43,8 @@ mtlLoader.load("obj/cubo.mtl", function (materials) {
         materials.materials.Material.map = videoTexture;
         object.children[0].material = materials.materials.Material;
 
-        objLoader.setMaterials(materials);
+        // objLoader.setMaterials(materials);
+
         scene.add(object);
         console.log(object);
     });
